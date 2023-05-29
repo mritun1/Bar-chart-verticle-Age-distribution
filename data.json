@@ -1,0 +1,79 @@
+[
+    {
+        "count_id": "13334539",
+        "Follower_id": "1",
+        "gender": "U",
+        "age_no": "13-17",
+        "valueData": "1",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:22",
+        "removed_on": null,
+        "total": "305"
+    },
+    {
+        "count_id": "13334545",
+        "Follower_id": "1",
+        "gender": "M",
+        "age_no": "18-24",
+        "valueData": "1306",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:23",
+        "removed_on": null,
+        "total": "2248"
+    },
+    {
+        "count_id": "13334546",
+        "Follower_id": "1",
+        "gender": "F",
+        "age_no": "25-34",
+        "valueData": "884",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:23",
+        "removed_on": null,
+        "total": "1945"
+    },
+    {
+        "count_id": "13334542",
+        "Follower_id": "1",
+        "gender": "U",
+        "age_no": "35-44",
+        "valueData": "224",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:23",
+        "removed_on": null,
+        "total": "1003"
+    },
+    {
+        "count_id": "13334543",
+        "Follower_id": "1",
+        "gender": "F",
+        "age_no": "45-54",
+        "valueData": "118",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:23",
+        "removed_on": null,
+        "total": "263"
+    },
+    {
+        "count_id": "13334540",
+        "Follower_id": "1",
+        "gender": "U",
+        "age_no": "55-64",
+        "valueData": "1",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:22",
+        "removed_on": null,
+        "total": "110"
+    },
+    {
+        "count_id": "13334550",
+        "Follower_id": "1",
+        "gender": "F",
+        "age_no": "65+",
+        "valueData": "45",
+        "end_time": "2023-05-28",
+        "created_on": "2023-05-29 16:55:23",
+        "removed_on": null,
+        "total": "103"
+    }
+]

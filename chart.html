@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Age Distribution</title>
+    <style>
+        :root {
+            --dragon-black: #141415;
+            --black: #000000;
+            --dragon-red: #1eaa41;
+            --dragon-dark-red: #368079;
+            --dragon-gold: #c0148c;
+            --dragon-white: #fffbfe;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--dragon-red);
+            color: var(--dragon-white);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--dragon-gold);
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            margin-right: 110px;
+            margin-top: 20px;
+        }
+
+        .form-group label {
+            width: 240px;
+            margin-right: 10px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .form-group select,
+        .form-group input[type="number"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            align-items: center;
+        }
+
+        #chart {
+            width: 100%;
+            max-width: 700px;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        /* Updated CSS */
+        .plotly .main-svg text {
+            fill: var(--black);
+        }
+
+        .plotly .main-svg .xaxislayer-above,
+        .plotly .main-svg .yaxislayer-above {
+            stroke: var(--black);
+        }
+
+        .plotly .main-svg .scatterlayer .scatter path {
+            fill: var(--white);
+        }
+
+        .plotly .main-svg .xaxislayer-above text,
+        .plotly .main-svg .yaxislayer-above text {
+            font-weight: normal;
+        }
+
+        .plotly .main-svg .textpoint text {
+            fill: var(--black);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Social Media Age Distribution</h1>
+
+    <div id="chart"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Sample data for age distribution
+        fetchData()
+
+        function fetchData() {
+
+            var ageData = [];
+
+            fetch('http://45.76.160.28:4009/app/api/v1/age_wise.php?source=age_wise&for=')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Assign the fetched data to ageData
+                    ageData = data;
+
+                    // Extracting age groups and counts
+                    var ageGroups = ageData.map(data => data.age_no);
+                    var counts = ageData.map(data => data.total);
+
+                    // Creating the bar trace
+                    var trace = {
+                        x: ageGroups,
+                        y: counts,
+                        type: 'bar',
+                        marker: {
+                            color: '#ad9440'
+                        },
+                        text: counts.map(String), // Set the text to the counts array
+                        textposition: 'outside', // Display the text on the bars
+                        hovertemplate: 'Number of followers: %{text}', // Customize the hover template
+                        textfont: {
+                            size: 12, // Adjust the font size of the numbers
+                            color: 'black' // Set the font color of the numbers
+                        }
+                    };
+
+                    // Creating the layout
+                    var layout = {
+                        title: {
+                            text: 'Social Media Age Distribution',
+                            font: {
+                                color: 'black' // Set title color to black
+                            }
+                        },
+                        xaxis: {
+                            title: 'Age Groups',
+                            color: 'black', // Set x-axis label color to black
+                            tickfont: {
+                                size: 12, // Adjust the font size of x-axis labels
+                                color: 'black', // Set the font color of x-axis labels
+                                weight: 'normal', // Remove boldness from x-axis labels
+                            }
+
+                        },
+                        yaxis: {
+                            title: 'No. of followers',
+                            color: 'black', // Set y-axis label color to black
+                            tickfont: {
+                                size: 12, // Adjust the font size of y-axis labels
+                                color: 'black', // Set the font color of y-axis labels
+                                weight: 'normal' // Remove boldness from y-axis labels
+                            },
+
+                        },
+                        plot_bgcolor: '#ffffff', // Set graph background color to white
+                        paper_bgcolor: '#ffffff', // Set paper background color to white
+                        font: {
+                            color: '#fffbfe'
+                        },
+                        autosize: true,
+                        margin: {
+                            l: 100,
+                            r: 100,
+                            b: 100,
+                            t: 50,
+                            pad: 4
+                        },
+                        responsive: true,
+                        bargap: 0.05, // Adjust the gap between bars if needed
+                        bargroupgap: 0.2 // Adjust the gap between bar groups if needed
+                    };
+
+                    // Creating the data array
+                    var data = [trace];
+
+                    // Creating the plot
+                    Plotly.newPlot('chart', data, layout, { responsive: true });
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the request
+                    console.error('Error:', error);
+                });
+
+        }
+
+
+    </script>
+</body>
+
+</html>
